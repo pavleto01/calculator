@@ -1,35 +1,22 @@
-import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
-import java.util.regex.Pattern;
+import java.util.Scanner;
 
-public class OpenFile{
-    String read() {
-        StringBuilder sb = new StringBuilder();
-        String strLine = "";
-        String str_data = "";
+public class OpenFile {
+    String data;
+    String getData() {
         try {
-            BufferedReader br = new BufferedReader(new FileReader("data.txt"));
-            while (strLine != null) {
-                if (strLine == null)
-                    break;
-                str_data += strLine;
-                strLine = br.readLine();
+            File myObj = new File("data.txt");
+            Scanner myReader = new Scanner(myObj);
+            while (myReader.hasNextLine()) {
+                data = myReader.nextLine();
             }
-            Pattern pattern = Pattern.compile(" |,");
-            double[] results = pattern.splitAsStream(str_data)
-                    .mapToDouble(Double::parseDouble)
-                    .toArray();
-
-
-            br.close();
+            myReader.close();
         } catch (
                 FileNotFoundException e) {
-            System.err.println("File not found");
-        } catch (
-                IOException e) {
-            System.err.println("Unable to read the file.");
+            System.out.println("An error occurred.");
+            e.printStackTrace();
         }
-
+        return data;
+    }
 }
