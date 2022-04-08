@@ -9,12 +9,12 @@ public class Main {
         System.out.print("Choose option: ");
     }
     private static void operations(){
-        System.out.println("add");
-        System.out.println("sub");
-        System.out.println("mul");
-        System.out.println("div");
-        System.out.println("power");
-        System.out.println("log");
+        System.out.println("add - add first number to second");
+        System.out.println("sub - sub second number from first");
+        System.out.println("mul - multiply first number by second");
+        System.out.println("div - divide first number with second");
+        System.out.println("power - power the thwo numbers");
+        System.out.println("log - logarithm");
     }
     private static void calculation(double first, double second){
         System.out.println("Numbers: "+first+" "+second+"\n");
@@ -23,19 +23,19 @@ public class Main {
         String operation;
         operation=option.next();
         switch(operation){
-            case "addition":
+            case "add":
                 AddCalculatorOperation addition=new AddCalculatorOperation();
                 System.out.println("Result:"+addition.calculate(first,second));
                 break;
-            case "substraction":
+            case "sub":
                 SubtractCalculatorOperation substraction=new SubtractCalculatorOperation();
                 System.out.println("Result:"+substraction.calculate(first,second));
                 break;
-            case "multiplication":
+            case "mul":
                 MultiplyCalculatorOperation multiplication=new MultiplyCalculatorOperation();
                 System.out.println("Result:"+multiplication.calculate(first,second));
                 break;
-            case "division":
+            case "div":
                 DivideCalculatorOperation division=new DivideCalculatorOperation();
                 System.out.println("Result:"+division.calculate(first,second));
                 break;
@@ -43,7 +43,7 @@ public class Main {
                 PowerCalculatorOperation power=new PowerCalculatorOperation();
                 System.out.println("Result:"+power.calculate(first,second));
                 break;
-            case "logarithm":
+            case "log":
                 LogarithmCalculatorOperation logarithm=new LogarithmCalculatorOperation();
                 System.out.println("Result:"+logarithm.calculate(first,second));
                 break;
@@ -62,18 +62,15 @@ public class Main {
         while (!option.equals("exit")) {
             scanner = new Scanner(System.in);
             System.out.println("Type help for command list");
-            System.out.println("Type operations for math operations");
             System.out.println("Command: ");
             try {
                 option = scanner.next();
                 switch (option) {
-                    case "operations":
-                        operations();
-                        break;
                     case "help":
                         help();
                         break;
                     case "file":
+                        operations();
                         double[] results;
                         OpenFile test = new OpenFile();
                         String data = test.getData();
@@ -85,6 +82,7 @@ public class Main {
                         break;
 
                     case "console":
+                        operations();
                         Scanner a = new Scanner(System.in);
                         System.out.println("First number: ");
                         double first=a.nextDouble();
